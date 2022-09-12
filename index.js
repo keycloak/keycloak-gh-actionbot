@@ -72,7 +72,11 @@ async function run() {
     ).check_runs;
 
     for (const check of check_runs) {
-      if (check.conclusion === "failure") {
+      if (
+        check.conclusion === "failure" ||
+        check.conclusion === "cancelled" ||
+        check.conclusion === "timed_out"
+      ) {
         if (debug) {
           console.log("Check:", check);
         }
