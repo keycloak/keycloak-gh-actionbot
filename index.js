@@ -127,7 +127,7 @@ run().catch((err) => {
   console.error(err);
   console.log(
     "Payload that triggered this error: ",
-    JSON.stringify(context.payload)
+    JSON.stringify(context.payload, null, 2)
   );
   core.setFailed("Unexpected error");
 });
