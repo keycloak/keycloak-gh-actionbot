@@ -27654,7 +27654,14 @@ async function run() {
         check.conclusion === "timed_out"
       ) {
         if (debug) {
-          console.log("Check:", check);
+          console.log("Check: ", check);
+        }
+
+        if (check.app.slug !== "github-actions") {
+          if (debug) {
+            console.log("Can only re-run github actions, ignoring this check.");
+          }
+          continue;
         }
 
         const job = unwrapResult(
@@ -27694,6 +27701,10 @@ async function run() {
 
 run().catch((err) => {
   console.error(err);
+  console.log(
+    "Payload that triggered this error: ",
+    JSON.stringify(_actions_github__WEBPACK_IMPORTED_MODULE_1__.context.payload)
+  );
   _actions_core__WEBPACK_IMPORTED_MODULE_0__.setFailed("Unexpected error");
 });
 

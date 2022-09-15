@@ -67,6 +67,26 @@ jobs:
 
 8. Create a PR for the main project.
 
+## Testing the GitHub action locally
+
+A GitHub action environment can be simulated via environment variables, and the event can be provided via a file.
+
+The following example assumes that the event is stored in the file `event.json`.
+If environment variable `INPUT_GITHUB_TOKEN` is set, the action will run with anonymous/read only access.
+
+```bash
+export GITHUB_EVENT_NAME=issue_comment
+export GITHUB_EVENT_PATH=event.json
+export INPUT_GITHUB_TOKEN=ghp_...
+export INPUT_DEBUG=true
+```
+
+After the environment variables are set, use the following command to execute the action:
+
+```bash
+node index.js
+```
+
 ## Reading about the GitHub APIs
 
 - [GitHub's REST API docs](https://docs.github.com/en/rest)
