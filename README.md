@@ -37,7 +37,7 @@ jobs:
   act:
     runs-on: ubuntu-latest
     steps:
-      - uses: keycloak/keycloak-gh-actionbot@v1
+      - uses: keycloak/keycloak-gh-actionbot@v0.2.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
