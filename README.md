@@ -2,6 +2,8 @@
 
 Custom GitHub Actions for Keycloak projects.
 
+[![Build](https://github.com/keycloak/keycloak-gh-actionbot/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/keycloak/keycloak-gh-actionbot/actions/workflows/ci.yml)
+
 ## Using the bot in a repository
 
 The bot contains the following functionality:
