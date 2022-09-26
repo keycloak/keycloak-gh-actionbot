@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  push:
+    # dependabot will create both branches and pull request
+    # only run on pull requests to avoid running twice
+    branches-ignore: [dependabot/**]
+  pull_request:
+    branches: [main]
+
+concurrency:
+  # Only run once for the latest commit per ref and cancel other (previous) runs.
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          check-latest: true
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Check formatting
+        run: npm run check-format
+      - name: Build
+        run: npm run dist

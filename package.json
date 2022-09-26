@@ -4,7 +4,8 @@
   "main": "dist/index.js",
   "scripts": {
     "dist": "npx -p @vercel/ncc ncc build index.js",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "check-format": "prettier --check ."
   },
   "type": "module",
   "dependencies": {
