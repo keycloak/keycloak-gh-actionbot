@@ -71,6 +71,8 @@ async function run() {
       })
     ).check_runs;
 
+    const restarted_runs = new Set();
+
     for (const check of check_runs) {
       if (
         check.conclusion === "failure" ||
@@ -100,6 +102,13 @@ async function run() {
           console.log("Job:", job);
         }
 
+        if (restarted_runs.has(job.run_id)) {
+          if (debug) {
+            console.log("Ignoring this job as run_id already restarted");
+          }
+          continue;
+        }
+
         unwrapResult(
           await octokit.rest.actions.reRunWorkflowFailedJobs({
             owner: context.payload.repository.owner.login,
@@ -107,6 +116,8 @@ async function run() {
             run_id: job.run_id,
           })
         );
+
+        restarted_runs.add(job.run_id);
       }
     }
 
