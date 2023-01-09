@@ -14,7 +14,7 @@
     "octokit": "^2.0.10"
   },
   "devDependencies": {
-    "prettier": "^2.8.1",
+    "prettier": "^2.8.2",
     "prettier-cli": "^0.1.0"
   }
 }
